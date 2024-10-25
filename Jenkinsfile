@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github-credentials')]) {
+                withCredentials([usernamePassword(credentialsId: 'github-creds')]) {
                     git branch: 'main', url: 'https://github.com/akor92/project.git' 
                 }
             }
@@ -18,8 +18,8 @@ pipeline {
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials')]) {
-                    sh 'docker push your_username/your_image_name'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds')]) {
+                    sh 'docker push akor92/portfolio'
                 }
             }
         }
